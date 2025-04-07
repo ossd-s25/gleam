@@ -1589,3 +1589,33 @@ import wibble
         find_position_of("wibble")
     );
 }
+
+#[test]
+fn hover_custom_type() {
+    assert_hover!(
+        "
+/// Exciting documentation
+/// Maybe even multiple lines
+type Wibble {
+    /// Some more exciting documentation
+    Wibble(arg: String)
+}
+",
+        find_position_of("Wibble")
+    );
+}
+
+#[test]
+fn hover_type_constructor() {
+    assert_hover!(
+        "
+/// Exciting documentation
+/// Maybe even multiple lines
+type Wibble {
+    /// Some more exciting documentation
+    Wibble(arg: String)
+}
+",
+        find_position_of("Wibble").nth_occurrence(2)
+    );
+}
