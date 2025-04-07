@@ -1598,7 +1598,9 @@ fn hover_custom_type() {
 /// Maybe even multiple lines
 type Wibble {
     /// Some more exciting documentation
-    Wibble(arg: String)
+    Wibble(String)
+    /// The most exciting documentation
+    Wobble(arg: Int)
 }
 ",
         find_position_of("Wibble")
@@ -1614,8 +1616,27 @@ fn hover_type_constructor() {
 type Wibble {
     /// Some more exciting documentation
     Wibble(arg: String)
+    /// The most exciting documentation
+    Wobble(Int)
 }
 ",
         find_position_of("Wibble").nth_occurrence(2)
+    );
+}
+
+#[test]
+fn hover_type_constructor_with_label() {
+    assert_hover!(
+        "
+/// Exciting documentation
+/// Maybe even multiple lines
+type Wibble {
+    /// Some more exciting documentation
+    Wibble(arg: String)
+    /// The most exciting documentation
+    Wobble(Int)
+}
+",
+        find_position_of("Wobble")
     );
 }
