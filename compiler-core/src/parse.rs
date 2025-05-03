@@ -2325,6 +2325,7 @@ where
                                     end: c_e,
                                 },
                                 name: c_n,
+                                type_name: name.clone(),
                                 arguments: args,
                                 documentation,
                                 deprecation: attributes.deprecated,
